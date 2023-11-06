@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import NavBar from './components/NavBar.js'
-import AboutMe from './components/AboutMe.js'
 import LoadingPage from './LoadingPage.js';
-import {Home, SwitchToHome} from './Home.js';
+import {Home} from './Home.js';
 
 import {motion as m} from 'framer-motion';
 import {useAnimation} from 'framer-motion';
@@ -20,13 +17,14 @@ function App() {
   document.body.style.overflow = "hidden";
 
   useEffect(() => {
-    document.addEventListener("wheel", detectKeyDown, true)
+    document.addEventListener("wheel", detectKeyDown)
   },)
 
   const detectKeyDown = (e) => {
     if(e.wheelDeltaY < 0){
       setTimeout(() =>{
         loadingTransition.start("loaded");
+        document.removeEventListener("wheel", detectKeyDown)
         setTimeout(() =>{
           setLoading(false);
         },1000)

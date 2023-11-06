@@ -1,10 +1,11 @@
 import {motion as m} from 'framer-motion';
 import {useAnimation , useAnimate} from 'framer-motion';
 import arrow from './images/down-arrow.png';
-import {useState, useEffect } from 'react';
+import {useEffect } from 'react';
 
 
 function DetectScroll(){
+
   useEffect(()=>{
     document.body.addEventListener('wheel', checkScroll);
   })

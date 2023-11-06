@@ -1,7 +1,8 @@
-import React from 'react'
-import {motion as m, spring, useAnimation } from "framer-motion";
+import {motion as m } from "framer-motion";
+import { Link } from 'react-scroll';
 
-  export default function NavBar() {
+  export default function NavBar({StartAni}) {
+    
     return (
       <section>
         <div className = "grid grid-cols-3 list-none p-10 text-3xl font-sans fixed w-screen">
@@ -25,12 +26,12 @@ import {motion as m, spring, useAnimation } from "framer-motion";
           }}
           initial="surnameFirst"
           animate="surnameFinal"
-          transition={{delay:1.55}}>
+          transition={{delay:.55}}>
             <p className="pl-10">Peng</p>
           </m.div>
           </div>
           <li></li>
-          <li>
+          <li className='grid grid-cols-3'>
             <m.div
             variants={{
               infoHidden:{opacity:0, x:-800},
@@ -38,11 +39,42 @@ import {motion as m, spring, useAnimation } from "framer-motion";
             }}
             initial="infoHidden"
             animate="infoEnd"
-            transition={{duration:0.70,delay:3, staggerChildren:0.5, staggerDirection:1, type: 'spring', stiffness: 60}} className="text-center grid grid-cols-3 text-2xl pt-5">
-              <li>Git</li>
-              <li>Projects</li>
-              <li>Contacts</li>
+            transition={{duration:0.70,delay:1, staggerDirection:1}} className="text-center text-2xl pt-5 cursor-pointer">
+              <li><Link 
+              onClick={()=>StartAni(1)}
+              to="about me"
+              smooth={true}>About Me</Link></li>
+              </m.div>
+
+              <m.div
+            variants={{
+              infoHidden:{opacity:0, x:-300},
+              infoEnd:{opacity:1, x:0}
+            }}
+            initial="infoHidden"
+            animate="infoEnd"
+            transition={{duration:0.70,delay:1.5}} className="text-center text-2xl pt-5 cursor-pointer">
+              <li><Link
+              onClick={()=>StartAni(2)}
+              to="projects"
+              smooth={true}>Projects</Link></li>
             </m.div>
+            <m.div
+            variants={{
+              infoHidden:{opacity:0, x:-200},
+              infoEnd:{opacity:1, x:0}
+            }}
+            initial="infoHidden"
+            animate="infoEnd"
+            transition={{duration:0.70,delay:2}} className="text-center text-2xl pt-5 cursor-pointer">
+              <li><Link
+              to="contact"
+              onClick={()=>StartAni(3)}
+              smooth={true}>
+                Contacts</Link></li>
+              
+            </m.div>
+            
           </li>
 
         </div>
